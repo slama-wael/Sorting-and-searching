@@ -1,0 +1,36 @@
+PROCEDURE insertion_sort(var arr : ARRAY_OF INTEGER[15];)
+VAR
+    i,j,temp: INTEGER;
+BEGIN
+    i:= 0;
+    j:= 0;
+    temp:=0
+    FOR i FROM 1 TO arr.length-1 STEP 1  DO
+        temp=arr[i];
+        j:= i-1;
+        WHILE (j>=0 && arr[j]>temp) DO
+            arr[j+1]=arr[j];
+            j:= j-1
+        END_WHILE
+        arr[j+1]:= temp;
+    END_FOR
+END
+ALGORITHM playing cards
+VAR
+    i,n,valet, damme, roi: INTEGER;
+    arr1, arr2 : ARRAY_OF INTEGER[15];
+BEGIN
+    i:= 0;
+    n:= 0;
+    valet:= 11;
+    damme:= 12;
+    roi:= 13;
+    arr1 := [1, 10, 7, 8, 2, damme, 3, 6, 4, 5, 9, valet, roi] //ici on suppose que arr1 est le "tirrage" dont le joueur prandera 15 cartes au maxi
+    arr2 := [1] // le jueur possede une carte dans la main, il prandra a chaque fois une novelle carte 
+    FOR i FROM 0 TO arr1.length-1 STEP 1  DO
+        n:=i+1;
+        arr2[i+1]=arr1[i];
+        insertion_sort(arr2);
+        writeln(arr2);
+    END_FOR
+END
